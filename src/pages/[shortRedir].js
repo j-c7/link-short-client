@@ -1,8 +1,15 @@
 //import { useParams } from 'next/navigation'
 import { redirect } from "next/dist/server/api-utils";
+import Spinner from "@/components/spinner/Spinner";
 
 export default function redir() {
-    return (<div></div>)
+    return (
+        <div>
+
+        <Spinner />
+
+        </div>
+    )
 }
 
 export async function getServerSideProps({params}){

@@ -1,7 +1,7 @@
-import Image from "next/image";
 import localFont from "next/font/local";
 import Layout from "@/components/Layout";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import Spinner from "@/components/spinner/Spinner";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,12 +17,15 @@ const geistMono = localFont({
 export default function Home() {
   const [inUrl, setInUrl] = useState("");
   const [shorterUrl, setShorterUrl] = useState("");
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (ev) => {
     ev.preventDefault()
 
+    setLoading(true);
     if (inUrl === "") {
-      console.log("NO HAY URL")
+      console.log("NO HAY URL");
+      setLoading(false);
       return;
     }
 
@@ -40,6 +43,8 @@ export default function Home() {
         const finalUrl = `${process.env.NEXT_PUBLIC_PAGE_URL}/${shortUrl}`;
         setShorterUrl(finalUrl);
       });
+    
+      setLoading(false);
   }
 
   return (
@@ -49,6 +54,7 @@ export default function Home() {
           from-green-500 to-sky-500 bg-clip-text text-transparent">
           Shork Url
         </h1>
+       
         <h1 className="text-center text-3xl lg:text-4xl mt-3">
           Acorta tus enlaces aquí
         </h1>
@@ -83,13 +89,17 @@ export default function Home() {
             />
           </form>
 
+          
+
           {!inUrl ?
             <p className="text-md lg:text-xl text-center py-3 text-emerald-200">
               Ingresa Url para acortar.
             </p> : <p></p>
           }
-
-          {shorterUrl ?
+         
+          {loading ? <Spinner/> : <div></div>}
+          
+          {shorterUrl && !loading ?
             <input className="flex w-full p-3 mt-5 rounded-xl border focus:outline-double
                     bg-opacity-25 hover:bg-opacity-100 active:bg-opacity-100
                     bg-zinc-900 
@@ -101,8 +111,10 @@ export default function Home() {
               readOnly
             /> : <p></p>}
 
-          <p className="text-md lg:text-xl text-center py-3 text-emerald-200">
-            Esta página es para mi porfolio, las url acortadas solo duran 2 minutos.
+          <p className="text-md lg:text-xl text-start py-3 text-emerald-200">
+            <p> <span className="font-bold">Advertencia:</span> Esta página es para mi porfolio, las url acortadas solo duran 2 minutos.</p>
+            <p> <span className="font-bold">Advertencia 2:</span> Por lo anterior mencionado, utilizo un servicio gratuito y limitado para almacenar el backend, 
+              por lo que las solicitudes pueden tardar mas de lo normal.</p>
           </p>
         </div>
       </Layout>
