@@ -67,7 +67,7 @@ export default function Home() {
           <form onSubmit={handleSubmit}>
             <input
               type="text"
-              placeholder="url"
+              placeholder="Ingresa Url para acortar"
               className='w-full p-3 mt-5 rounded-xl border focus:outline-double
                     bg-opacity-25 hover:bg-opacity-100 active:bg-opacity-100
                     bg-zinc-900 
@@ -89,14 +89,6 @@ export default function Home() {
             />
           </form>
 
-          
-
-          {!inUrl ?
-            <p className="text-md lg:text-xl text-center py-3 text-emerald-200">
-              Ingresa Url para acortar.
-            </p> : <p></p>
-          }
-         
           {loading ? <Spinner/> : <div></div>}
           
           {shorterUrl && !loading ?
@@ -109,13 +101,13 @@ export default function Home() {
               value={shorterUrl}
               type="text"
               readOnly
-            /> : <p></p>}
+            /> : <div></div>}
 
-          <p className="text-md lg:text-xl text-start py-3 text-emerald-200">
-            <p> <span className="font-bold">Advertencia:</span> Esta página es para mi porfolio, las url acortadas solo duran 2 minutos.</p>
+          <div className="text-md lg:text-xl text-start py-3 text-emerald-200">
+            <p className="mb-3"> <span className="font-bold">Advertencia:</span> Esta página es para mi porfolio, las url acortadas solo duran 2 minutos.</p>
             <p> <span className="font-bold">Advertencia 2:</span> Por lo anterior mencionado, utilizo un servicio gratuito y limitado para almacenar el backend, 
               por lo que las solicitudes pueden tardar mas de lo normal.</p>
-          </p>
+          </div>
         </div>
       </Layout>
     </div>

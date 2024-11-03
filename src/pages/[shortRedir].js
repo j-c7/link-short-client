@@ -15,7 +15,7 @@ export default function redir() {
 export async function getServerSideProps({params}){
     const { shortRedir } = params;
    
-    let destUrl;
+    let destUrl = "";
     await fetch(`${process.env.NEXT_PUBLIC_API_URL}/short/get-public-short/${shortRedir}`)
     .then((response) => response.json())
     .catch((error) => console.error("Error:", error))
@@ -23,7 +23,7 @@ export async function getServerSideProps({params}){
         destUrl = response.url ? response.url : null
     });
 
-    if(destUrl)
+    if(destUrl !== "")
         return {redirect: {destination: destUrl} };
 
     return {redirect: {destination: "/"} };
