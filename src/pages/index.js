@@ -31,29 +31,23 @@ export default function Home() {
     }
 
     let data = { url: inUrl }
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/short/create-public-short/`, {
+    let jsonbody = JSON.stringify(data);
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/short/create-public-short/`, {
       method: "POST",
-      body: JSON.stringify(data),
+      body: jsonbody,
       headers: {
         "Content-Type": "application/json",
       },
     })
-
-    const resUrl = await response.json()
-
-    const { shortUrl } = resUrl;
-    const finalUrl = `${process.env.NEXT_PUBLIC_PAGE_URL}/${shortUrl}`;
-    setShorterUrl(finalUrl);
-    
-    /*.then((response) => response.json())
+      .then((response) => response.json())
       .catch((error) => console.error("Error:", error))
       .then((response) => {
         const { shortUrl } = response;
         const finalUrl = `${process.env.NEXT_PUBLIC_PAGE_URL}/${shortUrl}`;
         setShorterUrl(finalUrl);
-      });*/
-    
-      setLoading(false);
+      });
+
+    setLoading(false);
   }
 
   return (
@@ -63,7 +57,7 @@ export default function Home() {
           from-green-500 to-sky-500 bg-clip-text text-transparent">
           Shork Url
         </h1>
-       
+
         <h1 className="text-center text-3xl lg:text-4xl mt-3">
           Acorta tus enlaces aquí
         </h1>
@@ -98,8 +92,8 @@ export default function Home() {
             />
           </Form>
 
-          {loading ? <Spinner/> : <div></div>}
-          
+          {loading ? <Spinner /> : <div></div>}
+
           {shorterUrl && !loading ?
             <input className="flex w-full p-3 mt-5 rounded-xl border focus:outline-double
                     bg-opacity-25 hover:bg-opacity-100 active:bg-opacity-100
@@ -114,7 +108,7 @@ export default function Home() {
 
           <div className="text-md lg:text-xl text-start py-3 text-emerald-200">
             <p className="mb-3"> <span className="font-bold">Advertencia:</span> Esta página es para mi porfolio, las url acortadas solo duran 2 minutos.</p>
-            <p> <span className="font-bold">Advertencia 2:</span> Por lo anterior mencionado, utilizo un servicio gratuito y limitado para almacenar el backend, 
+            <p> <span className="font-bold">Advertencia 2:</span> Por lo anterior mencionado, utilizo un servicio gratuito y limitado para almacenar el backend,
               por lo que las solicitudes pueden tardar mas de lo normal.</p>
           </div>
         </div>
