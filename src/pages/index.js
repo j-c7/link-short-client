@@ -108,8 +108,6 @@ export default function Home() {
 
           <div className="text-md lg:text-xl text-start py-3 text-emerald-200">
             <p className="mb-3"> <span className="font-bold">Advertencia:</span> Esta página es para mi porfolio, las url acortadas solo duran 2 minutos.</p>
-            <p> <span className="font-bold">Advertencia 2:</span> Por lo anterior mencionado, utilizo un servicio gratuito y limitado para almacenar el backend,
-              por lo que las solicitudes pueden tardar mas de lo normal.</p>
           </div>
         </div>
       </Layout>
