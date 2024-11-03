@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import Layout from "@/components/Layout";
 import { useState } from "react";
 import Spinner from "@/components/spinner/Spinner";
+import Form from "next/form";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,19 +31,27 @@ export default function Home() {
     }
 
     let data = { url: inUrl }
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/short/create-public-short/`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/short/create-public-short/`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((response) => response.json())
+    })
+
+    const resUrl = await response.json()
+
+    const { shortUrl } = resUrl;
+    const finalUrl = `${process.env.NEXT_PUBLIC_PAGE_URL}/${shortUrl}`;
+    setShorterUrl(finalUrl);
+    
+    /*.then((response) => response.json())
       .catch((error) => console.error("Error:", error))
       .then((response) => {
         const { shortUrl } = response;
         const finalUrl = `${process.env.NEXT_PUBLIC_PAGE_URL}/${shortUrl}`;
         setShorterUrl(finalUrl);
-      });
+      });*/
     
       setLoading(false);
   }
@@ -64,7 +73,7 @@ export default function Home() {
           from-green-500 to-sky-500 bg-clip-text text-transparent`}>
             Ingresa Link
           </label>
-          <form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}>
             <input
               type="text"
               placeholder="Ingresa Url para acortar"
@@ -87,7 +96,7 @@ export default function Home() {
                 active:bg-emerald-300 hover:bg-emerald-500
               '
             />
-          </form>
+          </Form>
 
           {loading ? <Spinner/> : <div></div>}
           
