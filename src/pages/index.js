@@ -67,7 +67,7 @@ export default function Home() {
           from-green-500 to-sky-500 bg-clip-text text-transparent`}>
             Ingresa Link
           </label>
-          <Form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <input
               type="text"
               placeholder="Ingresa Url para acortar"
@@ -90,7 +90,7 @@ export default function Home() {
                 active:bg-emerald-300 hover:bg-emerald-500
               '
             />
-          </Form>
+          </form>
 
           {loading ? <Spinner /> : <div></div>}
 
