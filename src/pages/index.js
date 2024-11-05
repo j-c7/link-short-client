@@ -2,13 +2,13 @@ import localFont from "next/font/local";
 import Layout from "@/components/Layout";
 import { useState } from "react";
 import Spinner from "@/components/spinner/Spinner";
-import Form from "next/form";
 
+/*
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
-});
+});*/
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -54,7 +54,7 @@ export default function Home() {
     <div className={geistMono.className}>
       <Layout pagina="home">
         <h1 className="text-[2.25rem] lg:text-[4rem] font-bold text-center bg-gradient-to-r 
-          from-green-500 to-sky-500 bg-clip-text text-transparent">
+          from-green-500 to-sky-500 bg-clip-text text-transparent" id="pepito">
           Shork Url
         </h1>
 
