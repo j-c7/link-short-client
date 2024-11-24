@@ -14,13 +14,13 @@ export default function redir() {
 
 export async function getServerSideProps({params}){
     const { shortRedir } = params;
-   
+    
     let destUrl = "";
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/short/get-public-short/${shortRedir}`)
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/short/get-public-url/${shortRedir}`)
     .then((response) => response.json())
     .catch((error) => console.error("Error:", error))
     .then((response) => {
-        destUrl = response.url ? response.url : null
+        destUrl = response.data.url ? response.data.url : null
     });
 
     if(destUrl !== "")

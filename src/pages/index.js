@@ -42,7 +42,8 @@ export default function Home() {
       .then((response) => response.json())
       .catch((error) => console.error("Error:", error))
       .then((response) => {
-        const { shortUrl } = response;
+        const createdUser= response.data.createdUser;
+        const { shortUrl } = createdUser;
         const finalUrl = `${process.env.NEXT_PUBLIC_PAGE_URL}/${shortUrl}`;
         setShorterUrl(finalUrl);
       });
