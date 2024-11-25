@@ -42,7 +42,7 @@ export default function Home() {
       .then((response) => response.json())
       .catch((error) => console.error("Error:", error))
       .then((response) => {
-        const createdUser= response.data.createdUser;
+        const createdUser = response.data.createdUser;
         const { shortUrl } = createdUser;
         const finalUrl = `${process.env.NEXT_PUBLIC_PAGE_URL}/${shortUrl}`;
         setShorterUrl(finalUrl);
@@ -93,23 +93,33 @@ export default function Home() {
             />
           </form>
 
-          {loading ? <Spinner /> : <div></div>}
+          {loading ?
+            <>
+              <Spinner />
+
+              <div className="text-md lg:text-xl text-start py-3 text-orange-200">
+                <p className="mb-3"> <span className="font-bold">Advertencia:</span> La primer solicitud puede tardar alrededor de 20 segundos, utilizo un servidor gratuito y este se duerme por inactividad. </p>
+              </div>
+            </>
+            : <div></div>}
 
           {shorterUrl && !loading ?
-            <input className="flex w-full p-3 mt-5 rounded-xl border focus:outline-double
-                    bg-opacity-25 hover:bg-opacity-100 active:bg-opacity-100
-                    bg-zinc-900 
-                    border-emerald-500 
-                    focus:border-emerald-400 
-                    text-emerald-200"
-              value={shorterUrl}
-              type="text"
-              readOnly
-            /> : <div></div>}
-
-          <div className="text-md lg:text-xl text-start py-3 text-emerald-200">
-            <p className="mb-3"> <span className="font-bold">Advertencia:</span> Esta página es para mi porfolio, las url acortadas solo duran 2 minutos.</p>
-          </div>
+            <>
+              <input className="flex w-full p-3 mt-5 rounded-xl border focus:outline-double
+                      bg-opacity-25 hover:bg-opacity-100 active:bg-opacity-100
+                      bg-zinc-900 
+                      border-emerald-500 
+                      focus:border-emerald-400 
+                      text-emerald-200"
+                value={shorterUrl}
+                type="text"
+                readOnly
+              />
+              <div className="text-md lg:text-xl text-start py-3 text-orange-200">
+                <p className="mb-3"> <span className="font-bold">Advertencia:</span> Esta url se borrará de la base de datos en 2 minutos.</p>
+              </div>
+            </>
+            : <div></div>}
         </div>
       </Layout>
     </div>
