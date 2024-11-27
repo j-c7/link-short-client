@@ -98,7 +98,9 @@ export default function Home() {
               <Spinner />
 
               <div className="text-md lg:text-xl text-start py-3 text-orange-200">
-                <p className="mb-3"> <span className="font-bold">Advertencia:</span> La primer solicitud puede tardar alrededor de 20 segundos, utilizo un servidor gratuito y este se duerme por inactividad. </p>
+                <p className="mb-3"> <span className="font-bold">Advertencia:</span> 
+                  La primer solicitud puede tardar, utilizo un servidor gratuito y este se duerme por inactividad. 
+                </p>
               </div>
             </>
             : <div></div>}
@@ -116,7 +118,7 @@ export default function Home() {
                 readOnly
               />
               <div className="text-md lg:text-xl text-start py-3 text-orange-200">
-                <p className="mb-3"> <span className="font-bold">Advertencia:</span> Esta url se borrará de la base de datos en 2 minutos.</p>
+                <p className="font-bold mb-3"> Esta url se borrará de la base de datos en 2 minutos.</p>
               </div>
             </>
             : <div></div>}
